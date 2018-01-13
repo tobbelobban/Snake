@@ -1,4 +1,5 @@
 
+
 import java.awt.Graphics;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -22,7 +23,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class Game extends JPanel implements ActionListener {
-  
+
   private class TAdapter extends KeyAdapter {
     @Override
     public void keyPressed(KeyEvent e) {
@@ -73,7 +74,7 @@ public class Game extends JPanel implements ActionListener {
     BodyElement e = new BodyElement(39, 15);
     head = e;
     tail = e;
-    for(int i = 0; i < 30; i++) {
+    for(int i = 0; i < 4; i++) {
       e = new BodyElement(tail.x-SPEED,tail.y);
       grid[e.x][e.y] = true;
       tail.next = e;
@@ -86,8 +87,8 @@ public class Game extends JPanel implements ActionListener {
   }
 
 	@Override
-	public void render(Graphics g) {
-		super.paint(g);
+	 public void paintComponent(Graphics g) {
+		super.paintComponent(g);
       BodyElement temp = head;
       while(temp.next != head) {
         g.drawImage(body, temp.x*15, temp.y*15, null);
@@ -131,7 +132,7 @@ public class Game extends JPanel implements ActionListener {
   }
 
   public void move() {
-      
+
     grid[tail.x][tail.y] = false;
 
     switch(dir) {
